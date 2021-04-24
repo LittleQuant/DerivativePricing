@@ -20,15 +20,21 @@ int main()
 	*strikesDD = 45;
 	*(strikesDD + 1) = 50;
 
-	double pvCall = SimpleMonteCarlo2(VanillaOption(PayOffCall(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths);	// observe that you pass a PayOffCall instead of a bridge; accepted because of the constructor in the bridge
-	double pvPut = SimpleMonteCarlo2(VanillaOption(PayOffPut(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths);
-	double pvDD = SimpleMonteCarlo2(VanillaOption(PayOffDoubleDigital(*strikesDD,*(strikesDD+1)), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths);
-	double pvPowerCall = SimpleMonteCarlo2(VanillaOption(PayOffPowerCall(poweStrike, power), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths);
-	std::cout << "Our European call options costs: " << pvCall << ".\n";
-	std::cout << "Our European put options costs: " <<  pvPut << ".\n";
-	std::cout << "Checking put-call parity: " << pvCall + exp(-r * expiry) * strike << " has to be equal to " << pvPut + spot << ".\n";
-	std::cout << "Present value of double-digital option is: " << pvDD << ".\n";
-	std::cout << "Present value of a power call is " << pvPowerCall << ".\n";
+	StatisticsMean statCall;
+	StatisticsMean statPut;
+	StatisticsMean statDD;
+	StatisticsMean statPowerCall;
+
+
+	SimpleMonteCarlo(VanillaOption(PayOffCall(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statCall);	// observe that you pass a PayOffCall instead of a bridge; accepted because of the constructor in the bridge
+	SimpleMonteCarlo(VanillaOption(PayOffPut(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statPut);
+	SimpleMonteCarlo(VanillaOption(PayOffDoubleDigital(*strikesDD,*(strikesDD+1)), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statDD);
+	SimpleMonteCarlo(VanillaOption(PayOffPowerCall(poweStrike, power), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statPowerCall);
+	std::cout << "Our European call options costs: " << statCall.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "Our European put options costs: " <<  statPut.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "Checking put-call parity: " << statCall.GetResultsSoFar()[0][0] + exp(-r * expiry) * strike << " has to be equal to " << statPut.GetResultsSoFar()[0][0] + spot << ".\n";
+	std::cout << "Present value of double-digital option is: " << statDD.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "Present value of a power call is " << statPowerCall.GetResultsSoFar()[0][0] << ".\n";
 
 	UserDefinedPayOff userPayOff;
 	std::cout << "Payoff is: " << userPayOff.getPayOff() << std::endl;

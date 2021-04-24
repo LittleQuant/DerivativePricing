@@ -56,7 +56,10 @@ UserDefinedPayOff::UserDefinedPayOff()
 		throw("Wrong type, we throw error");
 	}
 
-	m_PayOff = SimpleMonteCarlo2(VanillaOption(*thisPayOff, expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths);
+	StatisticsMean gatherer;
+	SimpleMonteCarlo(VanillaOption(*thisPayOff, expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, gatherer);
+
+	m_PayOff = gatherer.GetResultsSoFar()[0][0];
 
 	delete thisPayOff;
 }

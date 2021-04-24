@@ -145,6 +145,7 @@
     <ClCompile Include="PayOff.cpp" />
     <ClCompile Include="PayOffBridge.cpp" />
     <ClCompile Include="SimpleMC.cpp" />
+    <ClCompile Include="Statistics.cpp" />
     <ClCompile Include="UserDefinedPayOff.cpp" />
     <ClCompile Include="Vanilla.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="PayOff.h" />
     <ClInclude Include="PayOffBridge.h" />
     <ClInclude Include="SimpleMC.h" />
+    <ClInclude Include="Statistics.h" />
     <ClInclude Include="Vanilla.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
