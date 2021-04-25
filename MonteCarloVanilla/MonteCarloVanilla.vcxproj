@@ -140,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConvergenceTable.cpp" />
+    <ClCompile Include="Example.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parameters.cpp" />
     <ClCompile Include="PayOff.cpp" />
@@ -150,12 +152,15 @@
     <ClCompile Include="Vanilla.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConvergenceTable.h" />
+    <ClInclude Include="Example.h" />
     <ClInclude Include="Parameters.h" />
     <ClInclude Include="PayOff.h" />
     <ClInclude Include="PayOffBridge.h" />
     <ClInclude Include="SimpleMC.h" />
     <ClInclude Include="Statistics.h" />
     <ClInclude Include="Vanilla.h" />
+    <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
