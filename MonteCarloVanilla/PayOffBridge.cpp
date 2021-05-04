@@ -1,5 +1,7 @@
 // Employing the bridge pattern for our PayOff class
 
+#include "pch.h"
+
 #include "PayOffBridge.h"
 
 PayOffBridge::PayOffBridge(const PayOffBridge& original)

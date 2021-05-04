@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Parameters.h"
 
 Parameters::Parameters(const ParametersInner& parameters)

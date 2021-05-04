@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Vanilla.h"
 
 VanillaOption::VanillaOption(const PayOffBridge& payOff, double expiry) : m_PayOff(payOff), m_Expiry(expiry) {}

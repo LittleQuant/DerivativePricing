@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "SimpleMC.h"
 
 #include <cmath>

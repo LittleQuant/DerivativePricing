@@ -3,7 +3,7 @@
 int main()
 {
 	Example example;
-	example.displayOptionPricer();
+	example.checkMoments();
 
 	return 0;
 }

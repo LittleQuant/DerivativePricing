@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "ConvergenceTable.h"
 
 ConvergenceTable::ConvergenceTable(const Wrapper<StatisticsMC>& inner) : m_Inner(inner), m_StoppingPoint(2), m_PathsDone(0) {}

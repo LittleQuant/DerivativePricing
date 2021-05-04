@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "SimpleMC.h"
 #include "Vanilla.h"
 
@@ -40,7 +42,7 @@ UserDefinedPayOff::UserDefinedPayOff()
 	case DoubleDigital:
 		double secondStrike;
 		std::cout << "Enter second strike: ";	std::cin >> secondStrike;
-		thisPayOff = new PayOffDoubleDigital(std::min(strike, secondStrike), std::max(strike, secondStrike));
+		thisPayOff = new PayOffDoubleDigital((std::min)(strike, secondStrike), (std::max)(strike, secondStrike));
 		break;
 	case PowerCall:
 		double powerOfCall;
