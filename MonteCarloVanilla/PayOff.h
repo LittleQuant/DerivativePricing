@@ -1,6 +1,6 @@
 #pragma once
 
-class PayOff
+class __declspec(dllexport) PayOff
 {
 public:
 	PayOff() {}
@@ -9,7 +9,7 @@ public:
 	virtual ~PayOff() {}
 };
 
-class UserDefinedPayOff
+class __declspec(dllexport) UserDefinedPayOff
 {
 public:
 	UserDefinedPayOff();
@@ -20,7 +20,7 @@ private:
 
 
 // Vanilla Options
-class PayOffCall : public PayOff
+class __declspec(dllexport) PayOffCall : public PayOff
 {
 public:
 	PayOffCall(double strike);
@@ -31,7 +31,7 @@ private:
 	double m_Strike;
 };
 
-class PayOffPut : public PayOff
+class __declspec(dllexport) PayOffPut : public PayOff
 {
 public:
 	PayOffPut(double strike);
@@ -43,7 +43,7 @@ private:
 	double m_Strike;
 };
 
-class PayOffDoubleDigital : public PayOff
+class __declspec(dllexport) PayOffDoubleDigital : public PayOff
 {
 public:
 	PayOffDoubleDigital(double lowerStrike, double doubleUpperStrike);
@@ -57,7 +57,7 @@ private:
 
 
 // Power
-class PayOffPowerCall : public PayOff
+class __declspec(dllexport) PayOffPowerCall : public PayOff
 {
 public:
 	PayOffPowerCall(double strike, double power);
@@ -69,7 +69,7 @@ private:
 	double m_Power;
 };
 
-class PayOffPowerPut : public PayOff
+class __declspec(dllexport) PayOffPowerPut : public PayOff
 {
 public:
 	PayOffPowerPut(double strike, double power);

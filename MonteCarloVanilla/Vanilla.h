@@ -4,7 +4,7 @@
 
 #include "PayOffBridge.h"
 
-class VanillaOption
+class __declspec(dllexport) VanillaOption
 {
 public:
 	VanillaOption(const PayOffBridge& payOff, double expiry);

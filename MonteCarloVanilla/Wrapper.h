@@ -38,6 +38,11 @@ public:
 		return *this;
 	}
 
+	inline bool operator!= (const Wrapper<T>& second) const
+	{
+		return m_DataPtr != second.m_DataPtr;
+	}
+
 	inline T& operator* ()
 	{
 		return *m_DataPtr;

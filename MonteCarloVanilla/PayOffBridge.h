@@ -4,7 +4,7 @@
 
 #include "PayOff.h"
 
-class PayOffBridge
+class __declspec(dllexport) PayOffBridge
 {
 public:
 	PayOffBridge(const PayOffBridge& original);

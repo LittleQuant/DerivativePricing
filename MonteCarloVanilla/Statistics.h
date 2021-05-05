@@ -15,7 +15,7 @@ public:
 private:
 };
 
-class StatisticsMean : public StatisticsMC
+class __declspec(dllexport) StatisticsMean : public StatisticsMC
 {
 public:
 	StatisticsMean() {}

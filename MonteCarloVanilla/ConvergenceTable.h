@@ -3,7 +3,7 @@
 #include "Statistics.h"
 #include "Wrapper.h"
 
-class ConvergenceTable : public StatisticsMC
+class __declspec(dllexport) ConvergenceTable : public StatisticsMC
 {
 public:
 	ConvergenceTable(const Wrapper<StatisticsMC>& inner);

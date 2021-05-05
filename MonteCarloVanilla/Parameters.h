@@ -2,7 +2,7 @@
 
 // Paramaters class for MC pricer designed using --the bridge pattern--
 
-class ParametersInner
+class __declspec(dllexport) ParametersInner
 {
 public:
 	ParametersInner() {}
@@ -15,7 +15,7 @@ private:
 };
 
 // Wrapper class
-class Parameters
+class __declspec(dllexport) Parameters
 {
 public:
 	Parameters(const ParametersInner& parameters);
@@ -43,7 +43,7 @@ inline double Parameters::IntegralSquare(double time1, double time2) const
 	return m_Parameters->IntegralSquare(time1, time2);
 }
 
-class ParametersConstant : public ParametersInner
+class __declspec(dllexport) ParametersConstant : public ParametersInner
 {
 public:
 	ParametersConstant(double constant);
