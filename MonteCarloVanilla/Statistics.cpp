@@ -84,11 +84,6 @@ std::vector<std::vector<double>> StatisticsMoments::GetResultsSoFar() const
 	return std::vector<std::vector<double>>{answer};
 }
 
-void printStatement()
-{
-	std::cout << "Hey" << std::endl;
-}
-
 
 
 

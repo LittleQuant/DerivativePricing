@@ -41,10 +41,3 @@ public:
 private:
 	std::vector<double> m_Samples{};
 };
-
-extern "C" __declspec(dllexport) void printStatement();
-
-//extern "C" MONTECARLOVANILLA_API StatisticsMoments* createStatisticsMoments()
-//{
-//	return new StatisticsMoments();
-//}
