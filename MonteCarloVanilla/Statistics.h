@@ -34,10 +34,23 @@ class __declspec(dllexport)StatisticsMoments : public StatisticsMC
 public:
 	StatisticsMoments();
 	virtual void DumpOneResult(double result);
-	virtual void DumpResults(std::vector<double> results);
+	void DumpResults(std::vector<double> results);
 	virtual StatisticsMC* clone() const;
 	virtual std::vector<std::vector<double>> GetResultsSoFar() const;
 	virtual ~StatisticsMoments() {}
+private:
+	std::vector<double> m_Samples{};
+};
+
+class __declspec(dllexport) StatisticsVaR : public StatisticsMC
+{
+public:
+	StatisticsVaR();
+	virtual void DumpOneResult(double result);
+	void DumpResults(std::vector<double> results);
+	virtual StatisticsMC* clone() const;
+	virtual std::vector<std::vector<double>> GetResultsSoFar() const;
+	virtual ~StatisticsVaR();
 private:
 	std::vector<double> m_Samples{};
 };

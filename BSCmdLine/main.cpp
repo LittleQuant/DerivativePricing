@@ -2,8 +2,5 @@
 
 int main()
 {
-	Example example;
-	example.displayOptionPricer();
-
 	return 0;
 }
