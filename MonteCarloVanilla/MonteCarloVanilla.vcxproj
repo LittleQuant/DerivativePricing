@@ -89,8 +89,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;MONTECARLOVANILLA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,8 +159,10 @@
     <ClInclude Include="PayOff.h" />
     <ClInclude Include="PayOffBridge.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Random\Random.h" />
     <ClInclude Include="SimpleMC.h" />
     <ClInclude Include="Statistics.h" />
+    <ClInclude Include="Utility\Arrays.h" />
     <ClInclude Include="Vanilla.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
@@ -178,6 +181,7 @@
     <ClCompile Include="SimpleMC.cpp" />
     <ClCompile Include="Statistics.cpp" />
     <ClCompile Include="UserDefinedPayOff.cpp" />
+    <ClCompile Include="Utility\Arrays.cpp" />
     <ClCompile Include="Vanilla.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
