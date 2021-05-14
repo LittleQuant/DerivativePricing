@@ -51,6 +51,12 @@
     <ClInclude Include="Utility\Arrays.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Random\Normals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random\ParkMiller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -85,6 +91,15 @@
     </ClCompile>
     <ClCompile Include="Utility\Arrays.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random\Normals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random\ParkMiller.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
