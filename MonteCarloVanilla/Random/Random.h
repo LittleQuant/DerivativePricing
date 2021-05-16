@@ -6,7 +6,7 @@
 
 typedef unsigned long ulong;
 
-class RandomBase
+class __declspec(dllexport) RandomBase
 {
 public:
 	RandomBase(ulong dimensionality);

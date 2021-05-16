@@ -159,6 +159,7 @@
     <ClInclude Include="PayOff.h" />
     <ClInclude Include="PayOffBridge.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Random\AntiThetic.h" />
     <ClInclude Include="Random\Normals.h" />
     <ClInclude Include="Random\ParkMiller.h" />
     <ClInclude Include="Random\Random.h" />
@@ -180,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Random\AntiThetic.cpp" />
     <ClCompile Include="Random\Normals.cpp" />
     <ClCompile Include="Random\ParkMiller.cpp" />
     <ClCompile Include="Random\Random.cpp" />

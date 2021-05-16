@@ -17,7 +17,7 @@ private:
 	long m_Seed;
 };
 
-class RandomParkMiller : public RandomBase
+class __declspec(dllexport) RandomParkMiller : public RandomBase
 {
 public:
 	RandomParkMiller(ulong dimensionality, ulong seed = 1);

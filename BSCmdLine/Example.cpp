@@ -3,6 +3,8 @@
 #include "MonteCarloVanilla/Statistics.h"
 #include "MonteCarloVanilla/ConvergenceTable.h"
 #include "MonteCarloVanilla/SimpleMC.h"
+#include "MonteCarloVanilla/Random/AntiThetic.h"
+#include "MonteCarloVanilla/Random/ParkMiller.h"
 
 #include <iostream>
 #include <vector>
@@ -89,3 +91,56 @@ void Example::checkMoments() const
 	}
 }
 
+void Example::compareRandomGenerators() const
+{
+	double strike = 48;
+	double expiry = 2;
+
+	double spot = 40;
+	double vol = 0.3;
+	double r = 0.05;
+	ulong numPaths = 1.e+06;
+
+	StatisticsMean statCallDefault;
+	StatisticsMean statCallParkMiller;
+	StatisticsMean statCallParkMillerAntiThetic;
+
+	ulong dimensionality = 1;
+	RandomParkMiller generatorPM(dimensionality);
+	AntiThetic generatorPMATh(Wrapper<RandomParkMiller>(generatorPM));
+	
+
+	VanillaOption option(PayOffCall(strike), expiry);
+	SimpleMonteCarlo(option, spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statCallDefault);
+	SimpleMonteCarlo(option, spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statCallParkMiller, generatorPM);
+	SimpleMonteCarlo(option, spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statCallParkMillerAntiThetic, generatorPM);
+	double priceCall = calculateCallPrice(strike, expiry, spot, vol, r);
+
+	std::cout << "Price of a call option: \n";
+	std::cout << "For default random generator: " << statCallDefault.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "For Park Miller random generator: " << statCallParkMiller.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "For antithetic Park Miller random generator: " << statCallParkMillerAntiThetic.GetResultsSoFar()[0][0] << ".\n";
+	std::cout << "Theoretical value: " << priceCall << ".\n";
+}
+
+void Example::verifyRandomness() const
+{
+	ulong dimensionality = 1;
+	RandomParkMiller generator(1);
+	MJArray variateArray(1);
+
+	ulong numSamples = 1.e+07;
+	std::vector<double> samples(numSamples);
+	for (int i = 0; i < numSamples; ++i)
+	{
+		generator.GetGaussians(variateArray);
+		samples[i] = variateArray[0];
+	}
+	
+	StatisticsMoments statsMoments;
+	statsMoments.DumpResults(samples);
+
+	std::vector<std::vector<double>> results = statsMoments.GetResultsSoFar();
+
+	std::cout << "The moments are: " << results[0][0] << ", " << results[0][1] << ", " << results[0][2] << ", " << results[0][3] << ".\n";
+}

@@ -44,7 +44,7 @@ private:
 
 BOOST_AUTO_TEST_CASE(European1)
 {
-    double expiry = 1;
+    double expiry = 2;
     double strike = 50;
     double spot = 40;
     double vol = 0.3;

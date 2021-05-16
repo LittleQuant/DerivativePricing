@@ -44,6 +44,10 @@ void StatisticsMoments::DumpOneResult(double result)
 
 void StatisticsMoments::DumpResults(std::vector<double> results)
 {
+	ulong size = results.size();
+	if (size > m_Samples.capacity() - m_Samples.size())
+		m_Samples.reserve(m_Samples.size() + 2 * size);
+
 	m_Samples.insert(m_Samples.end(), results.begin(), results.end());
 }
 

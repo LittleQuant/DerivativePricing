@@ -13,7 +13,7 @@ typedef std::valarray<double> MJArray
 
 typedef unsigned long ulong;
 
-class MJArray
+class __declspec(dllexport) MJArray
 {
 public:
 	explicit MJArray(ulong size = 0);

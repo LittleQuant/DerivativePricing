@@ -3,7 +3,7 @@
 #include "Random.h"
 #include "../Wrapper.h"
 
-class AntiThetic : public RandomBase
+class __declspec(dllexport) AntiThetic : public RandomBase
 {
 public:
 	AntiThetic(const Wrapper<RandomBase>& innerGenerator);
