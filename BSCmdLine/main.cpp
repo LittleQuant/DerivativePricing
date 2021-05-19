@@ -3,8 +3,10 @@
 int main()
 {
 	Example example;
-	//example.compareRandomGenerators();
-	example.verifyRandomness();
+	//example.displayOptionPricesConvergence();
+	example.compareRandomGenerators();
+	//example.verifyRandomness();
+	//example.compareRandomGeneratorsConvergence();
 
 	return 0;
 }

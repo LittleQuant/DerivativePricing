@@ -43,7 +43,7 @@ void SimpleMonteCarlo(const VanillaOption& option, double spot, const Parameters
 
 	double movedSpot = spot * exp(r.Integral(0, expiry) + itoCorrection);
 	double thisSpot = 0;
-	double discounting = exp(-r.IntegralSquare(0, expiry));
+	double discounting = exp(-r.Integral(0, expiry));
 
 	MJArray variateArray(1);
 

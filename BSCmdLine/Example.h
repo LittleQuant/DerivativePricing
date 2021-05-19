@@ -9,6 +9,7 @@ public:
 	void displayOptionPricesConvergence() const;
 	void checkMoments() const;
 	void compareRandomGenerators() const;
+	void compareRandomGeneratorsConvergence() const;
 
 	void verifyRandomness() const;
 private:

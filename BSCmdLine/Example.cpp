@@ -133,7 +133,7 @@ void Example::verifyRandomness() const
 	std::vector<double> samples(numSamples);
 	for (int i = 0; i < numSamples; ++i)
 	{
-		generator.GetGaussians(variateArray);
+		generator.GetUniforms(variateArray);
 		samples[i] = variateArray[0];
 	}
 	
@@ -143,4 +143,47 @@ void Example::verifyRandomness() const
 	std::vector<std::vector<double>> results = statsMoments.GetResultsSoFar();
 
 	std::cout << "The moments are: " << results[0][0] << ", " << results[0][1] << ", " << results[0][2] << ", " << results[0][3] << ".\n";
+}
+
+void Example::compareRandomGeneratorsConvergence() const
+{
+	ulong dimensionality = 1;
+
+	RandomParkMiller generatorPM(dimensionality);
+	AntiThetic generatorPMATh(generatorPM);
+
+	double strike = 50;
+	double expiry = 1;
+
+	double spot = 40;
+	double vol = 0.3;
+	double r = 0.05;
+	ulong numPaths = 1.e+07;
+
+	StatisticsMean statCallPM;
+	StatisticsMean statCallPMATh;
+	Wrapper<StatisticsMC> wrapperPM(statCallPM);
+	Wrapper<StatisticsMC> wrapperPMAth(statCallPMATh);
+
+	ConvergenceTable tablePM(wrapperPM);
+	ConvergenceTable tablePMATh(wrapperPMAth);		
+
+	VanillaOption option(PayOffCall(strike), expiry);
+	SimpleMonteCarlo(option, spot, ParametersConstant(vol), ParametersConstant(r), numPaths, tablePM, generatorPM);
+
+	generatorPMATh.Reset();	// not needed as we do deep copy at the beginning
+	SimpleMonteCarlo(option, spot, ParametersConstant(vol), ParametersConstant(r), numPaths, tablePMATh, generatorPMATh);
+
+	std::cout << "Price of a call option\n";
+	std::cout << "Park-Miller\tAnti-thetic Park-Miller\n";
+
+	auto resultsPM = tablePM.GetResultsSoFar();
+	auto resultsPMATh = tablePMATh.GetResultsSoFar();
+
+	double pvCall = calculateCallPrice(strike, expiry, spot, vol, r);
+
+	for (int i = 0; i < resultsPM.size(); ++i)
+	{
+		std::cout << resultsPM[i][0] - pvCall << "\t" << resultsPM[i][1] << "\t\t" << resultsPMATh[i][0] - pvCall << "\t" << resultsPMATh[i][1] << "\n";
+	}
 }
