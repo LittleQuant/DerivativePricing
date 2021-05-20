@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Statistics.h"
-#include "Wrapper.h"
+#include "../Utility/Wrapper.h"
 
 class __declspec(dllexport) ConvergenceTable : public StatisticsMC
 {

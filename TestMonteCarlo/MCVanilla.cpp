@@ -2,7 +2,7 @@
 
 #include "boost/test/unit_test.hpp"
 #include "BSMonteCarlo/SimpleMC.h"
-#include "BSMonteCarlo/Statistics.h"
+#include "BSMonteCarlo/Statistics/Statistics.h"
 
 #include <cmath>
 #include <iostream>

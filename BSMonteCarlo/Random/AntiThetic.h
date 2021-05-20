@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Random.h"
-#include "../Wrapper.h"
+#include "../Utility/Wrapper.h"
 
 class __declspec(dllexport) AntiThetic : public RandomBase
 {

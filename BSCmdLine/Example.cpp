@@ -1,7 +1,7 @@
 #include "Example.h"
 
-#include "BSMonteCarlo/Statistics.h"
-#include "BSMonteCarlo/ConvergenceTable.h"
+#include "BSMonteCarlo/Statistics/Statistics.h"
+#include "BSMonteCarlo/Statistics/ConvergenceTable.h"
 #include "BSMonteCarlo/SimpleMC.h"
 #include "BSMonteCarlo/Random/AntiThetic.h"
 #include "BSMonteCarlo/Random/ParkMiller.h"
