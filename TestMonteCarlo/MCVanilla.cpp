@@ -1,8 +1,8 @@
 #define BOOST_TEST_MODULE VanillaOptions
 
 #include "boost/test/unit_test.hpp"
-#include "MonteCarloVanilla/SimpleMC.h"
-#include "MonteCarloVanilla/Statistics.h"
+#include "BSMonteCarlo/SimpleMC.h"
+#include "BSMonteCarlo/Statistics.h"
 
 #include <cmath>
 #include <iostream>

@@ -1,10 +1,10 @@
 #include "Example.h"
 
-#include "MonteCarloVanilla/Statistics.h"
-#include "MonteCarloVanilla/ConvergenceTable.h"
-#include "MonteCarloVanilla/SimpleMC.h"
-#include "MonteCarloVanilla/Random/AntiThetic.h"
-#include "MonteCarloVanilla/Random/ParkMiller.h"
+#include "BSMonteCarlo/Statistics.h"
+#include "BSMonteCarlo/ConvergenceTable.h"
+#include "BSMonteCarlo/SimpleMC.h"
+#include "BSMonteCarlo/Random/AntiThetic.h"
+#include "BSMonteCarlo/Random/ParkMiller.h"
 
 #include <iostream>
 #include <vector>

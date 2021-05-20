@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestMonteCarlo", "TestMonte
 		{CD32D712-DFD0-4133-94AE-DF29C09BFEFE} = {CD32D712-DFD0-4133-94AE-DF29C09BFEFE}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonteCarloVanilla", "MonteCarloVanilla\MonteCarloVanilla.vcxproj", "{CD32D712-DFD0-4133-94AE-DF29C09BFEFE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BSMonteCarlo", "BSMonteCarlo\BSMonteCarlo.vcxproj", "{CD32D712-DFD0-4133-94AE-DF29C09BFEFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
