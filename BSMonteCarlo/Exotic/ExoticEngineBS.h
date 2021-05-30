@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ExoticEngine.h"
-#include "Random/Random.h"
+#include "../Random/Random.h"
 
 class __declspec(dllexport) ExoticEngineBS : public ExoticEngine
 {

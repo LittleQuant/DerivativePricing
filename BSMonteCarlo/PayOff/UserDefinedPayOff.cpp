@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "SimpleMC.h"
-#include "Vanilla.h"
+#include "../Vanilla/SimpleMC.h"
+#include "../Vanilla/Vanilla.h"
 
 #include <algorithm>
 #include <cmath>

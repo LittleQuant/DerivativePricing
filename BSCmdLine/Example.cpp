@@ -2,13 +2,13 @@
 
 #include "BSMonteCarlo/Statistics/Statistics.h"
 #include "BSMonteCarlo/Statistics/ConvergenceTable.h"
-#include "BSMonteCarlo/SimpleMC.h"
+#include "BSMonteCarlo/Vanilla/SimpleMC.h"
 #include "BSMonteCarlo/Random/AntiThetic.h"
 #include "BSMonteCarlo/Random/ParkMiller.h"
 
 // Asian options
-#include "BSMonteCarlo/ExoticEngineBS.h"
-#include "BSMonteCarlo/PathDependentAsian.h"
+#include "BSMonteCarlo/Exotic/ExoticEngineBS.h"
+#include "BSMonteCarlo/Exotic/PathDependentAsian.h"
 
 #include <iostream>
 #include <vector>

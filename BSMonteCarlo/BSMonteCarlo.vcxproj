@@ -153,37 +153,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ExoticEngine.h" />
-    <ClInclude Include="ExoticEngineBS.h" />
+    <ClInclude Include="Exotic\ExoticEngine.h" />
+    <ClInclude Include="Exotic\ExoticEngineBS.h" />
+    <ClInclude Include="Exotic\PathDependent.h" />
+    <ClInclude Include="Exotic\PathDependentAsian.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="PathDependent.h" />
-    <ClInclude Include="PathDependentAsian.h" />
     <ClInclude Include="PayOff\Parameters.h" />
     <ClInclude Include="PayOff\PayOff.h" />
     <ClInclude Include="PayOff\PayOffBridge.h" />
-    <ClInclude Include="PayOff\Vanilla.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Random\AntiThetic.h" />
     <ClInclude Include="Random\Normals.h" />
     <ClInclude Include="Random\ParkMiller.h" />
     <ClInclude Include="Random\Random.h" />
-    <ClInclude Include="SimpleMC.h" />
     <ClInclude Include="Statistics\ConvergenceTable.h" />
     <ClInclude Include="Statistics\Statistics.h" />
     <ClInclude Include="Utility\Arrays.h" />
     <ClInclude Include="Utility\Wrapper.h" />
+    <ClInclude Include="Vanilla\SimpleMC.h" />
+    <ClInclude Include="Vanilla\Vanilla.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="ExoticEngine.cpp" />
-    <ClCompile Include="ExoticEngineBS.cpp" />
-    <ClCompile Include="PathDependent.cpp" />
-    <ClCompile Include="PathDependentAsian.cpp" />
+    <ClCompile Include="Exotic\ExoticEngine.cpp" />
+    <ClCompile Include="Exotic\ExoticEngineBS.cpp" />
+    <ClCompile Include="Exotic\PathDependent.cpp" />
+    <ClCompile Include="Exotic\PathDependentAsian.cpp" />
     <ClCompile Include="PayOff\Parameters.cpp" />
     <ClCompile Include="PayOff\PayOff.cpp" />
     <ClCompile Include="PayOff\PayOffBridge.cpp" />
     <ClCompile Include="PayOff\UserDefinedPayOff.cpp" />
-    <ClCompile Include="PayOff\Vanilla.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -194,10 +193,11 @@
     <ClCompile Include="Random\Normals.cpp" />
     <ClCompile Include="Random\ParkMiller.cpp" />
     <ClCompile Include="Random\Random.cpp" />
-    <ClCompile Include="SimpleMC.cpp" />
     <ClCompile Include="Statistics\ConvergenceTable.cpp" />
     <ClCompile Include="Statistics\Statistics.cpp" />
     <ClCompile Include="Utility\Arrays.cpp" />
+    <ClCompile Include="Vanilla\SimpleMC.cpp" />
+    <ClCompile Include="Vanilla\Vanilla.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

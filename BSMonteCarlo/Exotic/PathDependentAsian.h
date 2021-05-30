@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PathDependent.h"
-#include "PayOff/PayOffBridge.h"
+#include "../PayOff/PayOffBridge.h"
 
 class __declspec(dllexport) PathDependentAsian : public PathDependent
 {

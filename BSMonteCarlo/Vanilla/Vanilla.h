@@ -2,7 +2,7 @@
 
 // Implementing a Vanilla Option class using --the bridge pattern--
 
-#include "PayOffBridge.h"
+#include "../PayOff/PayOffBridge.h"
 
 class __declspec(dllexport) VanillaOption
 {

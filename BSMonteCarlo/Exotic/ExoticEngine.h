@@ -1,9 +1,9 @@
 #pragma once
 
-#include "PayOff/Parameters.h"
+#include "../PayOff/Parameters.h"
 #include "PathDependent.h"
-#include "Statistics/Statistics.h"
-#include "Utility/Wrapper.h"
+#include "../Statistics/Statistics.h"
+#include "../Utility/Wrapper.h"
 
 #include <vector>
 
