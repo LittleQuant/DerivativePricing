@@ -6,6 +6,10 @@
 #include "BSMonteCarlo/Random/AntiThetic.h"
 #include "BSMonteCarlo/Random/ParkMiller.h"
 
+// Asian options
+#include "BSMonteCarlo/ExoticEngineBS.h"
+#include "BSMonteCarlo/PathDependentAsian.h"
+
 #include <iostream>
 #include <vector>
 
@@ -186,4 +190,42 @@ void Example::compareRandomGeneratorsConvergence() const
 	{
 		std::cout << resultsPM[i][0] - pvCall << "\t" << resultsPM[i][1] << "\t\t" << resultsPMATh[i][0] - pvCall << "\t" << resultsPMATh[i][1] << "\n";
 	}
+}
+
+void Example::displayAsianOptionPricer() const
+{
+	double expiry = 1;
+	double strike = 50;
+	double spot = 40;
+	double vol = 0.3;
+	double rate = 0.05;
+	double dividend = 0;
+	ulong numPaths = 1.e+06;
+	ulong numDates = 12;
+
+	PayOffPut payOffCall(strike);
+	MJArray times(numDates);
+
+	double avePeriod = expiry / numDates;
+
+	for (ulong i = 0; i < numDates; ++i)
+		times[i] = (1.0 + i) * avePeriod;
+
+	ParametersConstant volP(vol);
+	ParametersConstant rateP(rate);
+	ParametersConstant dividendP(dividend);
+
+	PathDependentAsian callOption(times, expiry, payOffCall);
+
+	StatisticsMean gatherer;
+	ConvergenceTable gathererTwo(gatherer);
+
+	RandomParkMiller generator(numDates);
+	AntiThetic generatorTwo(generator);
+
+	ExoticEngineBS engineBS(Wrapper<PathDependent>(callOption),rateP,dividendP,volP,Wrapper<RandomBase>(generator),spot);
+	engineBS.DoSimulation(gatherer, numPaths);
+
+	std::vector<std::vector<double>> results = gatherer.GetResultsSoFar();
+	std::cout << "Price of Asian call option: " << results[0][0] << std::endl;
 }

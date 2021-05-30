@@ -11,6 +11,9 @@ public:
 	void compareRandomGenerators() const;
 	void compareRandomGeneratorsConvergence() const;
 
+	// Exotic options
+	void displayAsianOptionPricer() const;
+
 	void verifyRandomness() const;
 private:
 	inline double cumStdNormal(double x) const;

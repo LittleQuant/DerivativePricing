@@ -153,7 +153,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExoticEngine.h" />
+    <ClInclude Include="ExoticEngineBS.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="PathDependent.h" />
+    <ClInclude Include="PathDependentAsian.h" />
     <ClInclude Include="PayOff\Parameters.h" />
     <ClInclude Include="PayOff\PayOff.h" />
     <ClInclude Include="PayOff\PayOffBridge.h" />
@@ -171,6 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="ExoticEngine.cpp" />
+    <ClCompile Include="ExoticEngineBS.cpp" />
+    <ClCompile Include="PathDependent.cpp" />
+    <ClCompile Include="PathDependentAsian.cpp" />
     <ClCompile Include="PayOff\Parameters.cpp" />
     <ClCompile Include="PayOff\PayOff.cpp" />
     <ClCompile Include="PayOff\PayOffBridge.cpp" />

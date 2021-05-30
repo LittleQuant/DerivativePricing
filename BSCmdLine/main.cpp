@@ -3,10 +3,13 @@
 int main()
 {
 	Example example;
+	//example.displayOptionPricer();
 	//example.displayOptionPricesConvergence();
-	example.compareRandomGenerators();
+	//example.compareRandomGenerators();
 	//example.verifyRandomness();
 	//example.compareRandomGeneratorsConvergence();
+
+	example.displayAsianOptionPricer();
 
 	return 0;
 }

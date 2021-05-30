@@ -2,7 +2,7 @@
 
 // Paramaters class for MC pricer designed using --the bridge pattern--
 
-class __declspec(dllexport) ParametersInner
+class ParametersInner
 {
 public:
 	ParametersInner() {}
