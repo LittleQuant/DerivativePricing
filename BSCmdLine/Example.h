@@ -5,14 +5,17 @@
 class Example
 {
 public:
-	void displayOptionPricer() const;
+	void displayVanillaOptionPricer() const;
 	void displayOptionPricesConvergence() const;
 	void checkMoments() const;
 	void compareRandomGenerators() const;
 	void compareRandomGeneratorsConvergence() const;
 
 	// Exotic options
-	void displayAsianOptionPricer() const;
+	//void displayAsianOptionPricer() const;
+
+	// Choice of option
+	void displayOptionPricer() const;
 
 	void verifyRandomness() const;
 private:

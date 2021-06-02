@@ -17,13 +17,20 @@ typedef unsigned long ulong;
 
 void Example::displayOptionPricer() const
 {
+	UserDefinedPayOff userPayOff;
+	
+	std::cout << "Present value of option: " << userPayOff.getPayOff() << std::endl;
+}
+
+void Example::displayVanillaOptionPricer() const
+{
 	double expiry = 1;
 	double strike = 50;
 	double spot = 40;
 	double vol = 0.3;
 	double r = 0.05;
 
-	double poweStrike = 90;
+	double powerStrike = 90;
 	double power = 1.25;
 	unsigned long numPaths = pow(10, 6);
 
@@ -41,7 +48,7 @@ void Example::displayOptionPricer() const
 	SimpleMonteCarlo(VanillaOption(PayOffCall(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statCall);	// observe that you pass a PayOffCall instead of a bridge; accepted because of the constructor in the bridge
 	SimpleMonteCarlo(VanillaOption(PayOffPut(strike), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statPut);
 	SimpleMonteCarlo(VanillaOption(PayOffDoubleDigital(*strikesDD, *(strikesDD + 1)), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statDD);
-	SimpleMonteCarlo(VanillaOption(PayOffPowerCall(poweStrike, power), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statPowerCall);
+	SimpleMonteCarlo(VanillaOption(PayOffPowerCall(powerStrike, power), expiry), spot, ParametersConstant(vol), ParametersConstant(r), numPaths, statPowerCall);
 	std::cout << "Our European call options costs: " << statCall.GetResultsSoFar()[0][0] << ".\n";
 	std::cout << "Our European put options costs: " << statPut.GetResultsSoFar()[0][0] << ".\n";
 	std::cout << "Checking put-call parity: " << statCall.GetResultsSoFar()[0][0] + exp(-r * expiry) * strike << " has to be equal to " << statPut.GetResultsSoFar()[0][0] + spot << ".\n";
@@ -192,40 +199,48 @@ void Example::compareRandomGeneratorsConvergence() const
 	}
 }
 
-void Example::displayAsianOptionPricer() const
-{
-	double expiry = 1;
-	double strike = 50;
-	double spot = 40;
-	double vol = 0.3;
-	double rate = 0.05;
-	double dividend = 0;
-	ulong numPaths = 1.e+06;
-	ulong numDates = 12;
-
-	PayOffPut payOffCall(strike);
-	MJArray times(numDates);
-
-	double avePeriod = expiry / numDates;
-
-	for (ulong i = 0; i < numDates; ++i)
-		times[i] = (1.0 + i) * avePeriod;
-
-	ParametersConstant volP(vol);
-	ParametersConstant rateP(rate);
-	ParametersConstant dividendP(dividend);
-
-	PathDependentAsian callOption(times, expiry, payOffCall);
-
-	StatisticsMean gatherer;
-	ConvergenceTable gathererTwo(gatherer);
-
-	RandomParkMiller generator(numDates);
-	AntiThetic generatorTwo(generator);
-
-	ExoticEngineBS engineBS(Wrapper<PathDependent>(callOption),rateP,dividendP,volP,Wrapper<RandomBase>(generator),spot);
-	engineBS.DoSimulation(gatherer, numPaths);
-
-	std::vector<std::vector<double>> results = gatherer.GetResultsSoFar();
-	std::cout << "Price of Asian call option: " << results[0][0] << std::endl;
-}
+//void Example::displayAsianOptionPricer() const
+//{
+//	enum Option {Call = 1, Put, Barrier};
+//	int optionType;
+//	std::cout << "Declare type of Arithmetic Asian option desired:\n1 Call\t 2 Put\t 3 Barrier: ";
+//	std::cin >> optionType;
+//
+//	double expiry = 1;
+//	double strike = 50;
+//	double spot = 40;
+//	double vol = 0.3;
+//	double rate = 0.05;
+//	double dividend = 0;
+//	ulong numPaths = 1.e+06;
+//	ulong numDates = 1;
+//	
+//	std::cout << "Expiry: "
+//	
+//
+//	PayOffCall payOffCall(strike);
+//	MJArray times(numDates);
+//
+//	double avePeriod = expiry / numDates;
+//
+//	for (ulong i = 0; i < numDates; ++i)
+//		times[i] = (1.0 + i) * avePeriod;
+//
+//	ParametersConstant volP(vol);
+//	ParametersConstant rateP(rate);
+//	ParametersConstant dividendP(dividend);
+//
+//	PathDependentAsian callOption(times, expiry, payOffCall);
+//
+//	StatisticsMean gatherer;
+//	ConvergenceTable gathererTwo(gatherer);
+//
+//	RandomParkMiller generator(numDates);
+//	AntiThetic generatorTwo(generator);
+//
+//	ExoticEngineBS engineBS(Wrapper<PathDependent>(callOption),rateP,dividendP,volP,Wrapper<RandomBase>(generator),spot);
+//	engineBS.DoSimulation(gatherer, numPaths);
+//
+//	std::vector<std::vector<double>> results = gatherer.GetResultsSoFar();
+//	std::cout << "Price of Asian call option: " << results[0][0] << std::endl;
+//}

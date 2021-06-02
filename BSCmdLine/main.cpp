@@ -9,7 +9,7 @@ int main()
 	//example.verifyRandomness();
 	//example.compareRandomGeneratorsConvergence();
 
-	example.displayAsianOptionPricer();
+	example.displayOptionPricer();
 
 	return 0;
 }
