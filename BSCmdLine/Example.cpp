@@ -8,7 +8,7 @@
 
 // Asian options
 #include "BSMonteCarlo/Exotic/ExoticEngineBS.h"
-#include "BSMonteCarlo/Exotic/PathDependentAsian.h"
+#include "BSMonteCarlo/Exotic/Asian.h"
 
 #include <iostream>
 #include <vector>
@@ -230,7 +230,7 @@ void Example::compareRandomGeneratorsConvergence() const
 //	ParametersConstant rateP(rate);
 //	ParametersConstant dividendP(dividend);
 //
-//	PathDependentAsian callOption(times, expiry, payOffCall);
+//	Asian callOption(times, expiry, payOffCall);
 //
 //	StatisticsMean gatherer;
 //	ConvergenceTable gathererTwo(gatherer);

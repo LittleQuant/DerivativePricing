@@ -44,6 +44,8 @@ public:
 	void resize(ulong newSize);
 
 	double sum() const;
+	double prod() const;
+	double geomMean() const;
 	double minArray() const;	// use longer name to avoid error caused by windows.h
 	double maxArray() const;
 

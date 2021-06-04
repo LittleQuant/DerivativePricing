@@ -156,7 +156,7 @@
     <ClInclude Include="Exotic\ExoticEngine.h" />
     <ClInclude Include="Exotic\ExoticEngineBS.h" />
     <ClInclude Include="Exotic\PathDependent.h" />
-    <ClInclude Include="Exotic\PathDependentAsian.h" />
+    <ClInclude Include="Exotic\Asian.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="PayOff\Parameters.h" />
     <ClInclude Include="PayOff\PayOff.h" />
@@ -178,7 +178,7 @@
     <ClCompile Include="Exotic\ExoticEngine.cpp" />
     <ClCompile Include="Exotic\ExoticEngineBS.cpp" />
     <ClCompile Include="Exotic\PathDependent.cpp" />
-    <ClCompile Include="Exotic\PathDependentAsian.cpp" />
+    <ClCompile Include="Exotic\Asian.cpp" />
     <ClCompile Include="PayOff\Parameters.cpp" />
     <ClCompile Include="PayOff\PayOff.cpp" />
     <ClCompile Include="PayOff\PayOffBridge.cpp" />

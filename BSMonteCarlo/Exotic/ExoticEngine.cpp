@@ -5,9 +5,10 @@ ExoticEngine::ExoticEngine(const Wrapper<PathDependent>& product, const Paramete
 	for (ulong i = 0; i < m_Discounts.size(); ++i)
 	{
 		m_Discounts[i] = exp(-m_Rates.Integral(0.0, m_Discounts[i]));
-
-		m_CashFlows.resize(m_Product->MaxNumberOfCashFlows());
 	}
+
+	m_CashFlows.resize(m_Product->MaxNumberOfCashFlows());
+	
 }
 
 void ExoticEngine::DoSimulation(StatisticsMC& gatherer, ulong numPaths)

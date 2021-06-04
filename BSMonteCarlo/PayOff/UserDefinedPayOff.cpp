@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "../Exotic/ExoticEngineBS.h"
-#include "../Exotic/PathDependentAsian.h"
+#include "../Exotic/Asian.h"
 #include "../Random/ParkMiller.h"
 #include "../Vanilla/SimpleMC.h"
 #include "../Vanilla/Vanilla.h"
@@ -13,7 +13,7 @@
 #include <string>
 
 enum {EuropeanCall = 1, EuropeanPut, DoubleDigital, PowerCall, PowerPut};
-enum {AritAsianCall = 1, AritAsianPut};
+enum {AritAsianCall = 1, AritAsianPut, GeomAsianCall, GeomAsianPut};
 
 // We assume beforehand the values
 void setParameters(std::map<std::string, double>& params)
@@ -35,7 +35,7 @@ UserDefinedPayOff::UserDefinedPayOff()
 	int optionType;
 	int optionSubType;
 	std::cout << "Choose from one of the below: \n";
-	std::cout << "1 Vanilla, 2 Arithmetic Asian.\n";
+	std::cout << "1 Vanilla, 2 Exotic.\n";
 	std::cout << "Type of option (enter number): ";
 	std::cin >> optionType;
 
@@ -90,7 +90,7 @@ UserDefinedPayOff::UserDefinedPayOff()
 	else
 	{
 		std::cout << "Choose subtype: ";
-		std::cout << "1 Arithmetic Asian Call,2 Arithmetic Asian Put.\n";
+		std::cout << "1 Arithmetic Asian Call,2 Arithmetic Asian Put, 3 Geometric Asian Call, 4 Geometric Asian Put.\n";
 		std::cout << "Subtype of exotic option (enter number): ";
 		std::cin >> optionSubType;
 
@@ -110,12 +110,15 @@ UserDefinedPayOff::UserDefinedPayOff()
 
 		PayOffBridge payOff(PayOffCall(0));	// empty payoff to change in the switch statement
 
+		Asian* optionPtr;
+
 		switch (optionSubType)
 		{
 		case AritAsianCall:			// puting braces to avoid error transfer of control bypasses initialization
 		{
 			PayOffCall payOffCall(strike);
 			payOff = payOffCall; 
+			optionPtr = new AsianArithmetic(times, params["Expiry"], payOff);
 		}
 		
 			break;
@@ -123,19 +126,39 @@ UserDefinedPayOff::UserDefinedPayOff()
 		{
 			PayOffPut payOffPut(strike);
 			payOff = payOffPut;
+			optionPtr = new AsianArithmetic(times, params["Expiry"], payOff);
 		}
 			break;
+
+		case GeomAsianCall:
+		{
+			PayOffCall payOffCall(strike);
+			payOff = payOffCall;
+			optionPtr = new AsianGeometric(times, params["Expiry"], payOff);
+		}
+		break;
+
+		case GeomAsianPut:
+		{
+			PayOffPut payOffPut(strike);
+			payOff = payOffPut;
+			optionPtr = new AsianGeometric(times, params["Expiry"], payOff);
+		}
+		break;
+
 		default:
 			throw new std::exception("Wrong type of option!\n");
 		}
 
-		PathDependentAsian option(times, params["Expiry"], payOff);
+		
 		StatisticsMean gatherer;
 		RandomParkMiller generator(numDates);
-		ExoticEngineBS engine(Wrapper<PathDependent>(option), ParametersConstant(params["Rate"]), ParametersConstant(params["Dividend"]), ParametersConstant(params["Vol"]), Wrapper<RandomBase>(generator), params["Spot"]);
+		ExoticEngineBS engine(Wrapper<PathDependent>(*optionPtr), ParametersConstant(params["Rate"]), ParametersConstant(params["Dividend"]), ParametersConstant(params["Vol"]), Wrapper<RandomBase>(generator), params["Spot"]);
 		engine.DoSimulation(gatherer, pow(10, params["PowerPaths"]));
 		
 		m_PayOff = gatherer.GetResultsSoFar()[0][0];
+
+		delete optionPtr;
 	}
 }
 

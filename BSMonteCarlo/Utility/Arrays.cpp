@@ -192,6 +192,29 @@ double MJArray::sum() const
 	return std::accumulate(m_ValuesPtr, m_EndPtr, 0.0);
 }
 
+double MJArray::prod() const
+{
+	return std::accumulate(m_ValuesPtr, m_EndPtr, 1.0, std::multiplies<double>());
+}
+
+// used when force all elements to be strictly positive
+double MJArray::geomMean() const
+{
+	int k = 0;
+	double prod = 1;
+
+	for (int i = 0; i < m_Size; i++)
+	{
+		if (this->operator[](i) == 0)
+			continue;
+
+		prod *= this->operator[](i);
+		k++;
+	}
+
+	return pow(prod, 1.0 / k);
+}
+
 double MJArray::minArray() const
 {
 #ifdef RANGE_CHECKING
