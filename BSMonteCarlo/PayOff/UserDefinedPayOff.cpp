@@ -2,6 +2,7 @@
 
 #include "../Exotic/ExoticEngineBS.h"
 #include "../Exotic/Asian.h"
+#include "../Exotic/Barrier.h"
 #include "../Random/ParkMiller.h"
 #include "../Vanilla/SimpleMC.h"
 #include "../Vanilla/Vanilla.h"
@@ -13,7 +14,7 @@
 #include <string>
 
 enum {EuropeanCall = 1, EuropeanPut, DoubleDigital, PowerCall, PowerPut};
-enum {AritAsianCall = 1, AritAsianPut, GeomAsianCall, GeomAsianPut};
+enum {AritAsianCall = 1, AritAsianPut, GeomAsianCall, GeomAsianPut, KnockOutUpCall, KnockOutUpPut};
 
 // We assume beforehand the values
 void setParameters(std::map<std::string, double>& params)
@@ -90,7 +91,8 @@ UserDefinedPayOff::UserDefinedPayOff()
 	else
 	{
 		std::cout << "Choose subtype: ";
-		std::cout << "1 Arithmetic Asian Call,2 Arithmetic Asian Put, 3 Geometric Asian Call, 4 Geometric Asian Put.\n";
+		std::cout << "1 Arithmetic Asian Call,2 Arithmetic Asian Put, 3 Geometric Asian Call, 4 Geometric Asian Put,\n";
+		std::cout << "5 Knock Out Up Call, 6 Knock Out Up Put.\n";
 		std::cout << "Subtype of exotic option (enter number): ";
 		std::cin >> optionSubType;
 
@@ -99,7 +101,7 @@ UserDefinedPayOff::UserDefinedPayOff()
 		ulong numDates;
 		
 		std::cout << "Enter strike: "; std::cin >> strike;
-		std::cout << "Enter number of averaging points: "; std::cin >> numDates;
+		std::cout << "Enter number of look-up points: "; std::cin >> numDates;
 
 		MJArray times(numDates);
 		double avePeriod = params["Expiry"] / numDates;
@@ -110,7 +112,7 @@ UserDefinedPayOff::UserDefinedPayOff()
 
 		PayOffBridge payOff(PayOffCall(0));	// empty payoff to change in the switch statement
 
-		Asian* optionPtr;
+		PathDependent* optionPtr;
 
 		switch (optionSubType)
 		{
@@ -143,6 +145,30 @@ UserDefinedPayOff::UserDefinedPayOff()
 			PayOffPut payOffPut(strike);
 			payOff = payOffPut;
 			optionPtr = new AsianGeometric(times, params["Expiry"], payOff);
+		}
+		break;
+
+		case KnockOutUpCall:
+		{
+			double barrier;
+			double rebate;
+			std::cout << "Enter barrier: "; std::cin >> barrier;
+			std::cout << "Enter rebate: "; std::cin >> rebate;
+			PayOffCall payOffCall(strike);
+			payOff = payOffCall;
+			optionPtr = new Barrier(times, params["Expiry"], barrier, true, true, payOff, rebate);
+		}
+		break;
+
+		case KnockOutUpPut:
+		{
+			double barrier;
+			double rebate;
+			std::cout << "Enter barrier: "; std::cin >> barrier;
+			std::cout << "Enter rebate: "; std::cin >> rebate;
+			PayOffPut payOffPut(strike);
+			payOff = payOffPut;
+			optionPtr = new Barrier(times, params["Expiry"], barrier, true, true, payOff, rebate);
 		}
 		break;
 

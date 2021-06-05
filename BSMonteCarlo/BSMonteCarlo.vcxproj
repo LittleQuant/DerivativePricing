@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Exotic\Barrier.h" />
     <ClInclude Include="Exotic\ExoticEngine.h" />
     <ClInclude Include="Exotic\ExoticEngineBS.h" />
     <ClInclude Include="Exotic\PathDependent.h" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Exotic\Barrier.cpp" />
     <ClCompile Include="Exotic\ExoticEngine.cpp" />
     <ClCompile Include="Exotic\ExoticEngineBS.cpp" />
     <ClCompile Include="Exotic\PathDependent.cpp" />

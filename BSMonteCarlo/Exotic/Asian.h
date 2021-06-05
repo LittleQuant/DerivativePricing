@@ -10,9 +10,9 @@ public:
 
 	virtual ulong MaxNumberOfCashFlows() const;
 	virtual MJArray PossibleCashFlowTimes() const;
-	//virtual ulong CashFlows(const MJArray& spotValues, std::vector<CashFlow>& generatedCashFlows) const = 0;
-
-	//virtual PathDependent* clone() const;
+	virtual ulong CashFlows(const MJArray& spotValues, std::vector<CashFlow>& generatedCashFlows) const = 0;
+	
+	virtual PathDependent* clone() const = 0;
 	virtual ~Asian() {}
 
 protected:
