@@ -11,13 +11,12 @@ public:
 	void compareRandomGenerators() const;
 	void compareRandomGeneratorsConvergence() const;
 
-	// Exotic options
-	//void displayAsianOptionPricer() const;
-
 	// Choice of option
 	void displayOptionPricer() const;
 
 	void verifyRandomness() const;
+
+	void displayBinomialTree() const;
 private:
 	inline double cumStdNormal(double x) const;
 	inline double calculateCallPrice(double strike, double expiry, double spot, double vol, double r) const;

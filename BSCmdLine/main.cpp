@@ -9,7 +9,7 @@ int main()
 	//example.verifyRandomness();
 	//example.compareRandomGeneratorsConvergence();
 
-	example.displayOptionPricer();
+	example.displayBinomialTree();
 
 	return 0;
 }

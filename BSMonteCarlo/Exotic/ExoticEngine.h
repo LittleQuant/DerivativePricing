@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../PayOff/Parameters.h"
+#include "../Utility/Parameters.h"
 #include "PathDependent.h"
 #include "../Statistics/Statistics.h"
 #include "../Utility/Wrapper.h"

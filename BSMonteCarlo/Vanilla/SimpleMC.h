@@ -2,7 +2,7 @@
 
 typedef unsigned long ulong;
 
-#include "../PayOff/Parameters.h"
+#include "../Utility/Parameters.h"
 #include "../Random/Random.h"
 #include "../Statistics/Statistics.h"
 #include "Vanilla.h"

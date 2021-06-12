@@ -1,5 +1,9 @@
 #include "Example.h"
 
+#include "BSMonteCarlo/BinomialTree/BinomialTree.h"
+#include "BSMonteCarlo/BinomialTree/TreeEuropean.h"
+#include "BSMonteCarlo/BinomialTree/TreeAmerican.h"
+
 #include "BSMonteCarlo/Statistics/Statistics.h"
 #include "BSMonteCarlo/Statistics/ConvergenceTable.h"
 #include "BSMonteCarlo/Vanilla/SimpleMC.h"
@@ -199,48 +203,22 @@ void Example::compareRandomGeneratorsConvergence() const
 	}
 }
 
-//void Example::displayAsianOptionPricer() const
-//{
-//	enum Option {Call = 1, Put, Barrier};
-//	int optionType;
-//	std::cout << "Declare type of Arithmetic Asian option desired:\n1 Call\t 2 Put\t 3 Barrier: ";
-//	std::cin >> optionType;
-//
-//	double expiry = 1;
-//	double strike = 50;
-//	double spot = 40;
-//	double vol = 0.3;
-//	double rate = 0.05;
-//	double dividend = 0;
-//	ulong numPaths = 1.e+06;
-//	ulong numDates = 1;
-//	
-//	std::cout << "Expiry: "
-//	
-//
-//	PayOffCall payOffCall(strike);
-//	MJArray times(numDates);
-//
-//	double avePeriod = expiry / numDates;
-//
-//	for (ulong i = 0; i < numDates; ++i)
-//		times[i] = (1.0 + i) * avePeriod;
-//
-//	ParametersConstant volP(vol);
-//	ParametersConstant rateP(rate);
-//	ParametersConstant dividendP(dividend);
-//
-//	Asian callOption(times, expiry, payOffCall);
-//
-//	StatisticsMean gatherer;
-//	ConvergenceTable gathererTwo(gatherer);
-//
-//	RandomParkMiller generator(numDates);
-//	AntiThetic generatorTwo(generator);
-//
-//	ExoticEngineBS engineBS(Wrapper<PathDependent>(callOption),rateP,dividendP,volP,Wrapper<RandomBase>(generator),spot);
-//	engineBS.DoSimulation(gatherer, numPaths);
-//
-//	std::vector<std::vector<double>> results = gatherer.GetResultsSoFar();
-//	std::cout << "Price of Asian call option: " << results[0][0] << std::endl;
-//}
+void Example::displayBinomialTree() const
+{
+	double spot = 40;
+	double strike = 50;
+	double rate = 0.05;
+	double dividend = 0.0;
+	double vol = 0.3;
+	ulong numSteps = 1.e+03;
+	double expiry = 1;
+
+	SimpleBinomialTree tree(spot, ParametersConstant(rate), ParametersConstant(dividend), vol, numSteps, expiry);
+	TreeEuropean treeProductEC(expiry, PayOffBridge(PayOffCall(strike)));
+	TreeAmerican treeProductAC(expiry, PayOffBridge(PayOffCall(strike)));
+
+	double pvEC = tree.GetThePrice(treeProductEC);
+	double pvAC = tree.GetThePrice(treeProductAC);
+	std::cout << "Present value of European Call: " << pvEC << std::endl;
+	std::cout << "Present value of American Call: " << pvAC << std::endl;
+}

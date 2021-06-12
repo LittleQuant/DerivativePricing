@@ -73,3 +73,17 @@ PayOff* PayOffPowerPut::clone() const
 {
 	return new PayOffPowerPut(*this);
 }
+
+
+
+PayOffForward::PayOffForward(double strike) : m_Strike(strike) {}
+
+double PayOffForward::operator()(double spot) const
+{
+	return spot - m_Strike;
+}
+
+PayOff* PayOffForward::clone() const
+{
+	return new PayOffForward(*this);
+}

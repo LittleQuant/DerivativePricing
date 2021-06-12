@@ -80,3 +80,14 @@ private:
 	double m_Strike;
 	double m_Power;
 };
+
+class _declspec(dllexport) PayOffForward : public PayOff
+{
+public:
+	PayOffForward(double strike);
+	virtual double operator()(double spot) const;
+	virtual PayOff* clone() const;
+	virtual ~PayOffForward() {}
+private:
+	double m_Strike;
+};
