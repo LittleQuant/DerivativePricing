@@ -14,6 +14,8 @@
 #include "BSMonteCarlo/Exotic/ExoticEngineBS.h"
 #include "BSMonteCarlo/Exotic/Asian.h"
 
+#include "BSMonteCarlo/Utility/BlackScholesFormulas.h"
+
 #include <iostream>
 #include <vector>
 
@@ -214,11 +216,20 @@ void Example::displayBinomialTree() const
 	double expiry = 1;
 
 	SimpleBinomialTree tree(spot, ParametersConstant(rate), ParametersConstant(dividend), vol, numSteps, expiry);
+	SimpleBinomialTree treeP1(spot, ParametersConstant(rate), ParametersConstant(dividend), vol, numSteps + 1, expiry);
 	TreeEuropean treeProductEC(expiry, PayOffBridge(PayOffCall(strike)));
 	TreeAmerican treeProductAC(expiry, PayOffBridge(PayOffCall(strike)));
+	TreeEuropean treeProductFwd(expiry, PayOffBridge(PayOffForward(strike)));
 
 	double pvEC = tree.GetThePrice(treeProductEC);
+	double pvECp1 = treeP1.GetThePrice(treeProductEC);
 	double pvAC = tree.GetThePrice(treeProductAC);
+	double pvECTh = BS::BlackScholesCall(spot, strike, rate, dividend, vol, expiry);
+	double pvFwd = tree.GetThePrice(treeProductFwd);
+
 	std::cout << "Present value of European Call: " << pvEC << std::endl;
+	std::cout << "Present value (average) of European Call: " << 0.5 * (pvEC + pvECp1) << std::endl;	// better approximate
 	std::cout << "Present value of American Call: " << pvAC << std::endl;
+	std::cout << "Present value of European Call formula: " << pvECTh << std::endl;
+	std::cout << "Present value of forward: " << pvFwd << std::endl;
 }
