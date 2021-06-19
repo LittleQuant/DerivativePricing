@@ -17,6 +17,10 @@ public:
 	void verifyRandomness() const;
 
 	void displayBinomialTree() const;
+
+	// Implied volatilities
+	void checkBisection() const;
+	void checkNR() const;
 private:
 	inline double cumStdNormal(double x) const;
 	inline double calculateCallPrice(double strike, double expiry, double spot, double vol, double r) const;

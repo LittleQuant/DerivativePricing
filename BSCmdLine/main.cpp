@@ -8,8 +8,10 @@ int main()
 	//example.compareRandomGenerators();
 	//example.verifyRandomness();
 	//example.compareRandomGeneratorsConvergence();
-
-	example.displayBinomialTree();
-
+	//example.displayBinomialTree();
+	//example.checkBisection();
+	
+	example.checkNR();
+		
 	return 0;
 }

@@ -14,7 +14,13 @@
 #include "BSMonteCarlo/Exotic/ExoticEngineBS.h"
 #include "BSMonteCarlo/Exotic/Asian.h"
 
+// Implied volatility
+#include "BSMonteCarlo/Utility/ImpliedVol.h"
+
+// Utilities
 #include "BSMonteCarlo/Utility/BlackScholesFormulas.h"
+#include "BSMonteCarlo/Utility/Bisection.h"
+#include "BSMonteCarlo/Utility/NewtonRaphson.h"
 
 #include <iostream>
 #include <vector>
@@ -232,4 +238,40 @@ void Example::displayBinomialTree() const
 	std::cout << "Present value of American Call: " << pvAC << std::endl;
 	std::cout << "Present value of European Call formula: " << pvECTh << std::endl;
 	std::cout << "Present value of forward: " << pvFwd << std::endl;
+}
+
+void Example::checkBisection() const
+{
+	double spot = 90;
+	double strike = 120;
+	double expiry = 3;
+	double rate = 0.06;
+	double dividend = 0.05;
+	double price = 11.5927;
+	
+	double tol = 1.e-06;
+
+	BSCall call(rate, dividend, expiry, spot, strike);
+	double impliedVol = Bisection(price, 0, 1, tol, call);
+	double calcPrice = BS::BlackScholesCall(spot, strike, rate, dividend, impliedVol, expiry);
+	std::cout << "The implied volatility is: " << impliedVol << std::endl;
+	std::cout << "Given price: " << price << " calculated price " << calcPrice << std::endl;
+}
+
+void Example::checkNR() const
+{
+	double spot = 90;
+	double strike = 120;
+	double expiry = 3;
+	double rate = 0.06;
+	double dividend = 0.05;
+	double price = 9.0636;
+
+	double tol = 1.e-06;
+
+	BSCall2 call2(rate, dividend, expiry, spot, strike);
+	double impliedVol = NewtonRaphson<BSCall2,&BSCall2::Price,&BSCall2::Vega>(price, 0, tol, call2);
+	double calcPrice = BS::BlackScholesCall(spot, strike, rate, dividend, impliedVol, expiry);
+	std::cout << "The implied volatility is: " << impliedVol << std::endl;
+	std::cout << "Given price: " << price << " calculated price " << calcPrice << std::endl;
 }

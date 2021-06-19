@@ -173,7 +173,10 @@
     <ClInclude Include="Statistics\ConvergenceTable.h" />
     <ClInclude Include="Statistics\Statistics.h" />
     <ClInclude Include="Utility\Arrays.h" />
+    <ClInclude Include="Utility\Bisection.h" />
     <ClInclude Include="Utility\BlackScholesFormulas.h" />
+    <ClInclude Include="Utility\ImpliedVol.h" />
+    <ClInclude Include="Utility\NewtonRaphson.h" />
     <ClInclude Include="Utility\Parameters.h" />
     <ClInclude Include="Utility\Wrapper.h" />
     <ClInclude Include="Vanilla\SimpleMC.h" />
@@ -206,6 +209,7 @@
     <ClCompile Include="Statistics\ConvergenceTable.cpp" />
     <ClCompile Include="Statistics\Statistics.cpp" />
     <ClCompile Include="Utility\Arrays.cpp" />
+    <ClCompile Include="Utility\ImpliedVol.cpp" />
     <ClCompile Include="Utility\Parameters.cpp" />
     <ClCompile Include="Vanilla\SimpleMC.cpp" />
     <ClCompile Include="Vanilla\Vanilla.cpp" />

@@ -2,23 +2,21 @@
 
 #include <cmath>
 
-inline constexpr double pi()
-{
-	return atan(1) * 4;
-}
-
-inline double stdNormal(double x)
-{
-	return 0.5 * (1 + erf(x / sqrt(2)));
-}
-
-inline double densityNormal(double x)
-{
-	return exp(-0.5 * x * x) / sqrt(2 * pi());
-}
-
 namespace BS
 {
+	const double pi = atan(1) * 4;
+
+	inline double stdNormal(double x)
+	{
+		return 0.5 * (1 + erf(x / sqrt(2)));
+	}
+
+	inline double densityNormal(double x)
+	{
+		return exp(-0.5 * x * x) / sqrt(2 * pi);
+	}
+
+
 	auto dPlus = [](double spot, double strike, double expiry, double r, double d, double vol)
 	{
 		return (log(spot / strike) + (r - d + 0.5 * vol * vol) * expiry) / (vol * sqrt(expiry));
@@ -48,7 +46,7 @@ namespace BS
 	double BlackScholesDigitalCall(double spot, double strike, double r, double d, double vol, double expiry)
 	{
 		double dM = dMinus(spot, strike, expiry, r, d, vol);
-		
+
 		return exp(-r * expiry) * stdNormal(dM);
 	}
 
